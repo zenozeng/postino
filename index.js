@@ -66,8 +66,8 @@ function activateKeymaps() {
                 currentNode = keystrokeTree; // keystroke not found, reset
             }
             if (currentNode.callback) {
-                currentNode = keystrokeTree;
                 currentNode.callback();
+                currentNode = keystrokeTree;
             }
         });
     })
