@@ -5,13 +5,12 @@ class Keymap {
         this.map = {};
     }
 
-    set(accelerator, callback) {
-        accelerator = this._parseKeystroke(accelerator);
+    on(accelerator, callback) {
         this.map[accelerator] = callback;
     }
 
-    _parseKeystroke() {
-
+    send(keystroke) {
+        console.log({send: {keystroke}});
     }
 
 }

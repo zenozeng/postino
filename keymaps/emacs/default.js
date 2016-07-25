@@ -13,7 +13,7 @@ class EmacsKeymap extends Keymap {
         }
 
         Object.keys(map).forEach((k) => {
-            this.set(k, () => this.send(map[k]));
+            this.on(k, () => this.send(map[k]));
         });
     }
 
