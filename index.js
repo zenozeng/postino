@@ -1,8 +1,6 @@
 require("babel-register");
 
-const electron = require('electron');
-const app = electron.app;
-const BrowserWindow = electron.BrowserWindow;
+const {app, BrowserWindow, globalShortcut} = require('electron');
 
 let mainWindow;
 
