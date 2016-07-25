@@ -2,32 +2,25 @@ import Keymap from '../base';
 
 class EmacsKeymap extends Keymap {
 
-    "Ctrl-a"() {
-        this.send("Home");
+    constructor() {
+        super();
+        let map = {
+            'Ctrl-a': 'Home',
+            'Ctrl-x Ctrl-s': "Ctrl-s",
+            'Ctrl-x k': 'Ctrl-w',
+            'Ctrl-x Ctrl-c': 'Alt-F4',
+            'Ctrl-k': 'Shift-End Ctrl-x'
+        }
+
+        Object.keys(map).forEach((k) => {
+            this.set(k, () => this.send(map[k]));
+        });
     }
 
-    "Ctrl-x Ctrl-s"() {
-        this.send("Ctrl-s");
-    }
-
-    "Ctrl-x k"() {
-        this.send("Ctrl-w");
-    }
-
-    "Ctrl-x Ctrl-c"() {
-        this.send("Alt-F4");
-    }
-
-    "Ctrl-k"() {
-        this.send("Shift-End Ctrl-x");
+    test({currentWindow}) {
+        return true;
     }
 
 }
-
-function test({currentWindow}) {
-    return true;
-}
-
-Keymap.register("Emacs Default", EmacsKeymap, test);
 
 export default EmacsKeymap;

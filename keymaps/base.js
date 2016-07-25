@@ -6,10 +6,4 @@ class Keymap {
 
 }
 
-Keymap.keymaps = [];
-
-Keymap.register = function (keymap, test) {
-    Keymap.keymaps.push({keymap, test});
-};
-
 export default Keymap;

@@ -29,10 +29,9 @@ app.on('activate', () => {
 });
 
 function activateKeymaps() {
-    const Keymap = require('./keymaps/base').default;
-    const keymaps = [
+    let keymaps = [
         './keymaps/emacs/default'
     ];
-    keymaps.forEach((v) => require(v));
-    console.log(Keymap.keymaps);
+    keymaps = keymaps.map((v) => new (require(v).default)());
+    console.log(keymaps);
 }
