@@ -6,7 +6,6 @@ import sendKeys from '../lib/send-keys';
 let currentActiveWindow = {};
 activeWindow.getActiveWindow(({app, title}) => {
     currentActiveWindow = {app, title};
-    console.log(currentActiveWindow);
 }, -1, 0.2); // infinity repeat, 100ms
 
 class Keymap {
