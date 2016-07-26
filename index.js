@@ -58,9 +58,8 @@ function activateKeymaps() {
     let currentNode = keystrokeTree;
 
     flat.forEach((k) => {
-        console.log({k});
         globalShortcut.register(k, () => {
-            console.log(k);
+            console.log({KeyPressed: k});
             currentNode = currentNode[k];
             if (!currentNode) {
                 currentNode = keystrokeTree; // keystroke not found, reset
