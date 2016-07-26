@@ -7,6 +7,7 @@
 - [AutoHotkey_L/source/keyboard_mouse.cpp](https://github.com/Lexikos/AutoHotkey_L/blob/93954c9d690c9a1e9bb82a91a00b4f733baed65a/source/keyboard_mouse.cpp)
 - https://autohotkey.com/docs/commands/Send.htm#Send__SendRaw__SendInput__SendPlay__SendEvent_Send_Keys__Clicks
 - [Thread: multiple keystroke to browser window](http://forums.codeguru.com/showthread.php?299792-multiple-keystroke-to-browser-window)
+- http://unix.stackexchange.com/questions/214909/xdotool-does-not-send-keys
 
 ## Electron
 
