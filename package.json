@@ -7,6 +7,7 @@
     "active-window": "https://github.com/zenozeng/active-window/archive/v0.1.0-patch.0.tar.gz",
     "babel-plugin-transform-es2015-modules-commonjs": "^6.11.5",
     "babel-register": "^6.11.5",
+    "ffi": "^2.0.0",
     "lodash": "^4.14.0",
     "robotjs": "^0.4.4"
   },
