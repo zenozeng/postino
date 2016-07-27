@@ -4,7 +4,7 @@
   "description": "Requires Node.js v6.x.",
   "main": "index.js",
   "dependencies": {
-    "active-window": "^0.1.0",
+    "active-window": "https://github.com/zenozeng/active-window/archive/v0.1.0-patch.0.tar.gz",
     "babel-plugin-transform-es2015-modules-commonjs": "^6.11.5",
     "babel-register": "^6.11.5",
     "lodash": "^4.14.0",
