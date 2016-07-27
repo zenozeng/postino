@@ -8,6 +8,7 @@
 - https://autohotkey.com/docs/commands/Send.htm#Send__SendRaw__SendInput__SendPlay__SendEvent_Send_Keys__Clicks
 - [Thread: multiple keystroke to browser window](http://forums.codeguru.com/showthread.php?299792-multiple-keystroke-to-browser-window)
 - http://unix.stackexchange.com/questions/214909/xdotool-does-not-send-keys
+- [Simulating key press with PostMessage only works in some applications?](http://stackoverflow.com/questions/11890972/simulating-key-press-with-postmessage-only-works-in-some-applications)
 
 ## Electron
 
