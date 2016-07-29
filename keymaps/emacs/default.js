@@ -6,14 +6,18 @@ class EmacsKeymap extends Keymap {
         super();
         let map = {
             'Ctrl+a': 'Home',
+            'Ctrl+e': 'End',
             'Ctrl+x Ctrl+s': "Ctrl+s",
             'Ctrl+x k': 'Ctrl+w',
             'Ctrl+x Ctrl+c': 'Alt+F4',
-            'Ctrl+k': 'Shift+End Ctrl+x'
+            'Ctrl+k': 'Shift+End Ctrl+x',
+            'Ctrl+/': 'Ctrl+z'
         }
 
         Object.keys(map).forEach((k) => {
-            this.on(k, () => this.send(map[k]));
+            this.on(k, () => {
+                this.send(map[k])
+            });
         });
     }
 

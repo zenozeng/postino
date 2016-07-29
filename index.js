@@ -52,7 +52,6 @@ function activateKeymaps() {
         });
     });
     flat = _.uniq(flat);
-    console.log(flat);
     console.log(keystrokeTree);
 
     let currentNode = keystrokeTree;
