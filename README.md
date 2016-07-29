@@ -13,4 +13,4 @@ Requires Node.js v6.x.
 ### Linux
 
 - xprop
-- xdotool
+- python 3.5
