@@ -12,4 +12,5 @@ Requires Node.js v6.x.
 
 ### Linux
 
-- xprop (rquired by active-window)
+- xprop
+- xdotool
