@@ -1,9 +1,13 @@
 import asyncio, evdev
-from evdev import UInput, ecodes as e
-
-uinput = UInput()
+from evdev import UInput, ecodes
 
 # List accessible event devices
 devices = [evdev.InputDevice(fn) for fn in evdev.list_devices()]
 for device in devices:
-    print(device.fn, device.name, device.phys, device.capabilities(verbose=True))
+    ecodes.KEY_A
+    capabilities = device.capabilities()
+    if 1 in capabilities: # EV_KEY
+        capabilitiesEvkey = capabilities[1]
+        print(capabilitiesEvkey)
+# Init uinput device
+uinput = UInput(name='postino-uinput-device')
