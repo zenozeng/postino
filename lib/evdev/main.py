@@ -1,5 +1,5 @@
 import asyncio, evdev, json, sys
-from evdev import UInput, ecodes
+from evdev import ecodes
 
 def is_keyboard_device(device):
     if device.name == 'postino-uinput-device':
@@ -16,9 +16,6 @@ keyboardDevices = list(filter(is_keyboard_device, devices))
 for kbd in keyboardDevices:
     print('[evdev]', kbd)
 sys.stdout.flush()
-
-# Init uinput device
-uinput = UInput(name='postino-uinput-device')
 
 # Init json encoder
 json_encoder = json.JSONEncoder()
