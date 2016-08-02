@@ -20,6 +20,7 @@ class Keymap {
     }
 
     send(keystrokes) {
+        keystrokes = keystrokes.map((ks) => ks.split('+').map((k) => `KEY_${k.toUpperCase()}`).join(',')).join(' ');
         sendKeys(keystrokes);
     }
 
