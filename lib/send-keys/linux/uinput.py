@@ -13,4 +13,3 @@ for line in sys.stdin:
         uinput.write(ecodes.EV_KEY, int(keycode), 0) # keyup
     uinput.syn()
     sys.stdout.flush()
-

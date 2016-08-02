@@ -10,11 +10,12 @@ def is_keyboard_device(device):
             return True
     return False
 
-# Get accessible event devices
+# Grab accessible event devices
 devices = [evdev.InputDevice(fn) for fn in evdev.list_devices()]
 keyboardDevices = list(filter(is_keyboard_device, devices))
 for kbd in keyboardDevices:
-    print('[evdev]', kbd)
+    kbd.grab();
+    print('[evdev.py] grab', kbd)
 sys.stdout.flush()
 
 # Init json encoder
