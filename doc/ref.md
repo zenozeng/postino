@@ -10,6 +10,7 @@
 - http://unix.stackexchange.com/questions/214909/xdotool-does-not-send-keys
 - [Simulating key press with PostMessage only works in some applications?](http://stackoverflow.com/questions/11890972/simulating-key-press-with-postmessage-only-works-in-some-applications)
 - https://github.com/PyUserInput/PyUserInput/blob/master/pykeyboard/windows.py
+- https://github.com/torvalds/linux/blob/master/include/uapi/linux/input-event-codes.h
 
 ## Electron
 
