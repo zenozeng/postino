@@ -1,4 +1,4 @@
-import asyncio, evdev
+import asyncio, evdev, json
 from evdev import UInput, ecodes
 
 def is_keyboard_device(device):
@@ -15,10 +15,19 @@ keyboardDevices = list(filter(is_keyboard_device, devices))
 # Init uinput device
 uinput = UInput(name='postino-uinput-device')
 
+# Init json encoder
+json_encoder = json.JSONEncoder()
+
 # Reading events from all keyboard devices
 async def print_events(device):
     async for event in device.async_read_loop():
-        print(device.fn, evdev.categorize(event), sep=': ')
+        # A synchronization event.
+        # Synchronization events are used as markers to separate event.
+        if event.type == ecodes.EV_SYN:
+            active_keys = list()
+            for dev in keyboardDevices:
+                active_keys = active_keys + dev.active_keys()
+            print(sorted(active_keys))
 
 for device in keyboardDevices:
     asyncio.ensure_future(print_events(device))
