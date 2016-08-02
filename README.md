@@ -13,5 +13,5 @@ Requires Node.js v6.x.
 ### Linux
 
 - xprop
-- python 3.5
+- python 3.5+
 - python-evdev (sudo pip3 install evdev)
