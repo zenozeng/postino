@@ -2,6 +2,8 @@ import asyncio, evdev, json
 from evdev import UInput, ecodes
 
 def is_keyboard_device(device):
+    if device.name == 'postino-uinput-device':
+        return False
     capabilities = device.capabilities()
     if 1 in capabilities: # EV_KEY
         if ecodes.KEY_SPACE in capabilities[1]:
@@ -11,6 +13,8 @@ def is_keyboard_device(device):
 # Get accessible event devices
 devices = [evdev.InputDevice(fn) for fn in evdev.list_devices()]
 keyboardDevices = list(filter(is_keyboard_device, devices))
+for kbd in keyboardDevices:
+    print('[evdev]', kbd)
 
 # Init uinput device
 uinput = UInput(name='postino-uinput-device')
@@ -35,4 +39,3 @@ for device in keyboardDevices:
 loop = asyncio.get_event_loop()
 loop.run_forever()
 
-print('hello')
