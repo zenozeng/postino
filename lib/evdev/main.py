@@ -8,11 +8,14 @@ def is_keyboard_device(device):
             return True
     return False
 
-# List accessible event devices
+# Get accessible event devices
 devices = [evdev.InputDevice(fn) for fn in evdev.list_devices()]
 keyboardDevices = list(filter(is_keyboard_device, devices))
-print(keyboardDevices)
 
+# Init uinput device
+uinput = UInput(name='postino-uinput-device')
+
+# Reading events from all keyboard devices
 async def print_events(device):
     async for event in device.async_read_loop():
         print(device.fn, evdev.categorize(event), sep=': ')
@@ -22,6 +25,3 @@ for device in keyboardDevices:
 
 loop = asyncio.get_event_loop()
 loop.run_forever()
-
-# Init uinput device
-uinput = UInput(name='postino-uinput-device')
