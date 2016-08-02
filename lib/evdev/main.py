@@ -1,4 +1,4 @@
-import asyncio, evdev, json
+import asyncio, evdev, json, sys
 from evdev import UInput, ecodes
 
 def is_keyboard_device(device):
@@ -15,6 +15,7 @@ devices = [evdev.InputDevice(fn) for fn in evdev.list_devices()]
 keyboardDevices = list(filter(is_keyboard_device, devices))
 for kbd in keyboardDevices:
     print('[evdev]', kbd)
+sys.stdout.flush()
 
 # Init uinput device
 uinput = UInput(name='postino-uinput-device')
@@ -32,6 +33,7 @@ async def print_events(device):
             for dev in keyboardDevices:
                 active_keys = active_keys + dev.active_keys()
             print(sorted(active_keys))
+            sys.stdout.flush()
 
 for device in keyboardDevices:
     asyncio.ensure_future(print_events(device))
