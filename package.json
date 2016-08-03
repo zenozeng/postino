@@ -11,7 +11,9 @@
     "lodash": "^4.14.0",
     "uinput": "^1.0.0"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "babel-plugin-transform-async-to-module-method": "^6.8.0"
+  },
   "scripts": {
     "start": "node index.js"
   },
