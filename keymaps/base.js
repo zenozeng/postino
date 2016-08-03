@@ -1,7 +1,7 @@
 // import * as robot from 'robotjs';
 
 import * as activeWindow from 'active-window';
-import sendKeys from '../lib/send-keys';
+import sendInput from '../lib/send-input';
 
 let currentActiveWindow = {};
 activeWindow.getActiveWindow(({app, title}) => {
@@ -20,8 +20,8 @@ class Keymap {
     }
 
     send(keystrokes) {
-        keystrokes = keystrokes.map((ks) => ks.split('+').map((k) => `KEY_${k.toUpperCase()}`).join(',')).join(' ');
-        sendKeys(keystrokes);
+        keystrokes = keystrokes.map((ks) => ks.split('+').map((k) => `KEY_${k.toUpperCase()}`).join('+')).join(' ');
+        sendInput(keystrokes);
     }
 
     getActiveWindow() {
