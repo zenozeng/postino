@@ -7,6 +7,7 @@
     "active-window": "https://github.com/zenozeng/active-window/archive/v0.1.0-patch.0.tar.gz",
     "babel-plugin-transform-es2015-modules-commonjs": "^6.11.5",
     "babel-register": "^6.11.5",
+    "bindings": "^1.2.1",
     "bluebird": "^3.4.1",
     "lodash": "^4.14.0",
     "uinput": "^1.0.0"
