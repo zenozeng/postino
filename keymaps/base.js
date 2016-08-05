@@ -20,8 +20,7 @@ class Keymap {
     }
 
     send(keystrokes) {
-        keystrokes = keystrokes.map((ks) => ks.split('+').map((k) => `KEY_${k.toUpperCase()}`).join('+')).join(' ');
-        console.log('BaseKeymap: send: ', {keystrokes});
+        keystrokes = keystrokes.split(' ').map((ks) => ks.split('+').map((k) => `KEY_${k.toUpperCase()}`).join('+')).join(' ');
         sendInput(keystrokes);
     }
 
