@@ -1,19 +1,17 @@
 # postino
 
-## Dev
-
-Requires Node.js v6.x.
-
 ## Requirements
 
 ### Windows
 
+- Node.js v6.x
 - PowerShell
 
 ### Linux
 
+- Node.js v6.x
 - xprop
-- python 3.5+
+- python v3.5+
 - python-evdev (pip3 install evdev)
 
 ```bash
@@ -26,4 +24,4 @@ sudo usermod -g input $USER
 
 ### Gnome
 
-Make sure you Key theme is **Default** and do **not** swap your control key and capslock key using gnome (Tweaks - Typing - Ctrl key postion).
+Make sure you Key theme is **Default**.

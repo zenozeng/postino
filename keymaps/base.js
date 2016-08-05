@@ -15,12 +15,13 @@ class Keymap {
         this.map = {};
     }
 
-    on(accelerator, callback) {
-        this.map[accelerator] = callback;
+    on(keystrokes, callback) {
+        this.map[keystrokes] = callback;
     }
 
     send(keystrokes) {
         keystrokes = keystrokes.map((ks) => ks.split('+').map((k) => `KEY_${k.toUpperCase()}`).join('+')).join(' ');
+        console.log('BaseKeymap: send: ', {keystrokes});
         sendInput(keystrokes);
     }
 
