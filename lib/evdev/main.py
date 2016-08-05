@@ -14,7 +14,7 @@ def is_keyboard_device(device):
 devices = [evdev.InputDevice(fn) for fn in evdev.list_devices()]
 keyboardDevices = list(filter(is_keyboard_device, devices))
 for kbd in keyboardDevices:
-    # kbd.grab();
+    kbd.grab();
     print('[evdev.py] grab', kbd)
 sys.stdout.flush()
 
