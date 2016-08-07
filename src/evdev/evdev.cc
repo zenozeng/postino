@@ -47,6 +47,13 @@ NAN_METHOD(get_name) {
     info.GetReturnValue().Set(ret.ToLocalChecked());
 }
 
+NAN_METHOD(next_event) {
+    int fd = info[0]->Uint32Value();
+    struct libevdev* dev = get_dev_by_fd(fd);
+    struct input_event* ev;
+    libevdev_next_event(dev, LIBEVDEV_READ_FLAG_NORMAL, ev);
+}
+
 NAN_MODULE_INIT(InitAll) {
     Set(target, New<String>("grab").ToLocalChecked(),
         GetFunction(New<FunctionTemplate>(grab)).ToLocalChecked());
