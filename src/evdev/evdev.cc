@@ -1,6 +1,5 @@
 #include "libevdev-int.h"
 #include <nan.h>
-#include <vector>
 #include <map>
 
 using v8::FunctionTemplate;
@@ -41,11 +40,20 @@ NAN_METHOD(has_event_code) {
     info.GetReturnValue().Set(ret);
 }
 
+NAN_METHOD(get_name) {
+    int fd = info[0]->Uint32Value();
+    const char* name = libevdev_get_name(get_dev_by_fd(fd));
+    Nan::MaybeLocal<v8::String> ret = Nan::New<v8::String>(name);
+    info.GetReturnValue().Set(ret.ToLocalChecked());
+}
+
 NAN_MODULE_INIT(InitAll) {
     Set(target, New<String>("grab").ToLocalChecked(),
         GetFunction(New<FunctionTemplate>(grab)).ToLocalChecked());
     Set(target, New<String>("hasEventCode").ToLocalChecked(),
         GetFunction(New<FunctionTemplate>(has_event_code)).ToLocalChecked());
+    Set(target, New<String>("getName").ToLocalChecked(),
+        GetFunction(New<FunctionTemplate>(get_name)).ToLocalChecked());
 }
 
 NODE_MODULE(addon, InitAll)
