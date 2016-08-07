@@ -58,6 +58,13 @@ NAN_METHOD(next_event) {
     libevdev_next_event(dev, LIBEVDEV_READ_FLAG_NORMAL, ev);
 }
 
+NAN_METHOD(has_event_pending) {
+    int fd = info[0]->Uint32Value();
+    struct libevdev* dev = get_dev_by_fd(fd);
+    int ret = libevdev_has_event_pending(dev);
+    info.GetReturnValue().Set(ret);
+}
+
 NAN_MODULE_INIT(InitAll) {
     Set(target, New<String>("grab").ToLocalChecked(),
         GetFunction(New<FunctionTemplate>(grab)).ToLocalChecked());
@@ -67,6 +74,8 @@ NAN_MODULE_INIT(InitAll) {
         GetFunction(New<FunctionTemplate>(has_event_code)).ToLocalChecked());
     Set(target, New<String>("getName").ToLocalChecked(),
         GetFunction(New<FunctionTemplate>(get_name)).ToLocalChecked());
+    Set(target, New<String>("hasEventPending").ToLocalChecked(),
+        GetFunction(New<FunctionTemplate>(has_event_pending)).ToLocalChecked());
 }
 
 NODE_MODULE(addon, InitAll)
