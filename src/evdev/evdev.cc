@@ -27,8 +27,12 @@ struct libevdev* get_dev_by_fd(int fd) {
 
 NAN_METHOD(grab) {
     int fd = info[0]->Uint32Value();
-    enum libevdev_grab_mode grab = info[1]->Uint32Value() == 0 ? LIBEVDEV_UNGRAB : LIBEVDEV_GRAB;
-    libevdev_grab(get_dev_by_fd(fd), grab);
+    libevdev_grab(get_dev_by_fd(fd), LIBEVDEV_GRAB);
+}
+
+NAN_METHOD(ungrab) {
+    int fd = info[0]->Uint32Value();
+    libevdev_grab(get_dev_by_fd(fd), LIBEVDEV_UNGRAB);
 }
 
 NAN_METHOD(has_event_code) {
@@ -57,6 +61,8 @@ NAN_METHOD(next_event) {
 NAN_MODULE_INIT(InitAll) {
     Set(target, New<String>("grab").ToLocalChecked(),
         GetFunction(New<FunctionTemplate>(grab)).ToLocalChecked());
+    Set(target, New<String>("ungrab").ToLocalChecked(),
+        GetFunction(New<FunctionTemplate>(ungrab)).ToLocalChecked());
     Set(target, New<String>("hasEventCode").ToLocalChecked(),
         GetFunction(New<FunctionTemplate>(has_event_code)).ToLocalChecked());
     Set(target, New<String>("getName").ToLocalChecked(),
