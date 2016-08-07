@@ -1,6 +1,7 @@
 #include "libevdev-int.h"
 #include <nan.h>
 #include <vector>
+#include <map>
 
 using v8::FunctionTemplate;
 using v8::Handle;
@@ -10,19 +11,30 @@ using Nan::GetFunction;
 using Nan::New;
 using Nan::Set;
 
-std::vector<struct libdevdev*> devs;
+std::map<int, struct libevdev*> devs;
 
-NAN_METHOD(new_from_fd) {
+struct libevdev* get_dev_by_fd(int fd) {
     struct libevdev *dev;
+    std::map<int, struct libevdev*>::iterator it;
+    it = devs.find(fd);
+    if (it == devs.end()) {
+        libevdev_new_from_fd(fd, &dev);
+        devs.insert(std::pair<int, struct libevdev*>(fd, dev));
+    } else {
+        dev = devs.at(fd);
+    }
+    return dev;
+}
+
+NAN_METHOD(grab) {
     int fd = info[0]->Uint32Value();
-    libevdev_new_from_fd(fd, &dev);
-    devs.push_back(dev);
-    info.GetReturnValue().Set(devs.size() - 1);
+    int libevdev_grab_mode = info[1]->Uint32Value();
+    libevdev_grab(get_dev_by_fd(fd), libevdev_grab_mode);
 }
 
 NAN_MODULE_INIT(InitAll) {
-    Set(target, New<String>("newFromFd").ToLocalChecked(),
-        GetFunction(New<FunctionTemplate>(new_from_fd)).ToLocalChecked());
+    Set(target, New<String>("grab").ToLocalChecked(),
+        GetFunction(New<FunctionTemplate>(grab)).ToLocalChecked());
 }
 
 NODE_MODULE(addon, InitAll)
