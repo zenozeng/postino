@@ -32,9 +32,20 @@ NAN_METHOD(grab) {
     libevdev_grab(get_dev_by_fd(fd), grab);
 }
 
+NAN_METHOD(has_event_code) {
+    int fd = info[0]->Uint32Value();
+    unsigned int type = info[1]->Uint32Value();
+    unsigned int code = info[2]->Uint32Value();
+    struct libevdev* dev = get_dev_by_fd(fd);
+    int ret = libevdev_has_event_code(dev, type, code);
+    info.GetReturnValue().Set(ret);
+}
+
 NAN_MODULE_INIT(InitAll) {
     Set(target, New<String>("grab").ToLocalChecked(),
         GetFunction(New<FunctionTemplate>(grab)).ToLocalChecked());
+    Set(target, New<String>("hasEventCode").ToLocalChecked(),
+        GetFunction(New<FunctionTemplate>(has_event_code)).ToLocalChecked());
 }
 
 NODE_MODULE(addon, InitAll)
