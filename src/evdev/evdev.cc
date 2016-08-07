@@ -1,10 +1,12 @@
 #include "libevdev-int.h"
 #include <nan.h>
 #include <map>
+#include <iostream>
 
 using v8::FunctionTemplate;
 using v8::Handle;
 using v8::Object;
+using v8::Array;
 using v8::String;
 using Nan::GetFunction;
 using Nan::New;
@@ -47,15 +49,20 @@ NAN_METHOD(has_event_code) {
 NAN_METHOD(get_name) {
     int fd = info[0]->Uint32Value();
     const char* name = libevdev_get_name(get_dev_by_fd(fd));
-    Nan::MaybeLocal<v8::String> ret = Nan::New<v8::String>(name);
+    Nan::MaybeLocal<v8::String> ret = New<v8::String>(name);
     info.GetReturnValue().Set(ret.ToLocalChecked());
 }
 
 NAN_METHOD(next_event) {
     int fd = info[0]->Uint32Value();
     struct libevdev* dev = get_dev_by_fd(fd);
-    struct input_event* ev;
-    libevdev_next_event(dev, LIBEVDEV_READ_FLAG_NORMAL, ev);
+    struct input_event ev;
+    libevdev_next_event(dev, LIBEVDEV_READ_FLAG_NORMAL, &ev);
+    v8::Local<v8::Array> ret = New<v8::Array>(3);
+    ret->Set(0, New<v8::Number>(ev.type));
+    ret->Set(1, New<v8::Number>(ev.code));
+    ret->Set(2, New<v8::Number>(ev.value));
+    info.GetReturnValue().Set(ret);
 }
 
 NAN_METHOD(has_event_pending) {
@@ -74,6 +81,8 @@ NAN_MODULE_INIT(InitAll) {
         GetFunction(New<FunctionTemplate>(has_event_code)).ToLocalChecked());
     Set(target, New<String>("getName").ToLocalChecked(),
         GetFunction(New<FunctionTemplate>(get_name)).ToLocalChecked());
+    Set(target, New<String>("nextEvent").ToLocalChecked(),
+        GetFunction(New<FunctionTemplate>(next_event)).ToLocalChecked());
     Set(target, New<String>("hasEventPending").ToLocalChecked(),
         GetFunction(New<FunctionTemplate>(has_event_pending)).ToLocalChecked());
 }
