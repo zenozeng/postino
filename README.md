@@ -12,7 +12,6 @@
 - Node.js v6.x
 - xprop
 - libevdev2
-- libevdev-dev
 
 ```bash
 sudo chgrp input /dev/uinput
