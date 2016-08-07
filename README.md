@@ -11,8 +11,8 @@
 
 - Node.js v6.x
 - xprop
-- python v3.5+
-- python-evdev (pip3 install evdev)
+- libevdev2
+- libevdev-dev
 
 ```bash
 sudo chgrp input /dev/uinput
