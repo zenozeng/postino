@@ -28,8 +28,8 @@ struct libevdev* get_dev_by_fd(int fd) {
 
 NAN_METHOD(grab) {
     int fd = info[0]->Uint32Value();
-    int libevdev_grab_mode = info[1]->Uint32Value();
-    libevdev_grab(get_dev_by_fd(fd), libevdev_grab_mode);
+    enum libevdev_grab_mode grab = info[1]->Uint32Value() == 0 ? LIBEVDEV_UNGRAB : LIBEVDEV_GRAB;
+    libevdev_grab(get_dev_by_fd(fd), grab);
 }
 
 NAN_MODULE_INIT(InitAll) {
