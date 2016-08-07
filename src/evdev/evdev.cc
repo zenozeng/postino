@@ -10,14 +10,14 @@ using Nan::GetFunction;
 using Nan::New;
 using Nan::Set;
 
-std::vector<libdevdev*> devs;
+std::vector<struct libdevdev*> devs;
 
 NAN_METHOD(new_from_fd) {
     struct libevdev *dev;
     int fd = info[0]->Uint32Value();
     libevdev_new_from_fd(fd, &dev);
     devs.push_back(dev);
-    return devs.size() - 1;
+    info.GetReturnValue().Set(devs.size() - 1);
 }
 
 NAN_MODULE_INIT(InitAll) {
