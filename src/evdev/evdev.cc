@@ -60,7 +60,7 @@ NAN_METHOD(next_event) {
     int rc = libevdev_next_event(dev, LIBEVDEV_READ_FLAG_NORMAL, &ev);
     std::cout << "rc:" << rc << std::endl;
     std::cout.flush();
-    if (rc == LIBEVDEV_READ_STATUS_SYNC) {
+    if (rc == LIBEVDEV_READ_STATUS_SUCCESS) {
         v8::Local<v8::Array> ret = New<v8::Array>(3);
         ret->Set(0, New<v8::Number>(ev.type));
         ret->Set(1, New<v8::Number>(ev.code));
