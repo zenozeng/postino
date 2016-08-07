@@ -11,6 +11,7 @@
     "bluebird": "^3.4.1",
     "input-event-codes": "^1.0.2",
     "lodash": "^4.14.0",
+    "nan": "^2.4.0",
     "uinput": "https://github.com/zenozeng/node-uinput/archive/v1.0.0-patch.1.tar.gz"
   },
   "devDependencies": {
