@@ -1,4 +1,4 @@
-#include "libevdev.h"
+#include "libevdev-int.h"
 #include <nan.h>
 #include <vector>
 
@@ -10,7 +10,7 @@ using Nan::GetFunction;
 using Nan::New;
 using Nan::Set;
 
-vector<libdevdev*> devs;
+std::vector<libdevdev*> devs;
 
 NAN_METHOD(new_from_fd) {
     struct libevdev *dev;

@@ -5,7 +5,9 @@
             "include_dirs" : [
                 "<!(node -e \"require('nan')\")"
             ],
-            "sources": [ "src/evdev/evdev.cc" ]
+            "sources": [
+                "src/evdev/evdev.cc"
+            ]
         }
     ]
 }
