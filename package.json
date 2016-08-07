@@ -9,6 +9,7 @@
     "babel-register": "^6.11.5",
     "bindings": "^1.2.1",
     "bluebird": "^3.4.1",
+    "input-event-codes": "^1.0.0",
     "lodash": "^4.14.0",
     "uinput": "https://github.com/zenozeng/node-uinput/archive/v1.0.0-patch.1.tar.gz"
   },
