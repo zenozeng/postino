@@ -2,3 +2,5 @@ node_modules
 npm-debug.log
 __pycache__
 .tern-port
+.browse.VC.db
+.browse.VC.db-wal
