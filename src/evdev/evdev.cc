@@ -57,12 +57,16 @@ NAN_METHOD(next_event) {
     int fd = info[0]->Uint32Value();
     struct libevdev* dev = get_dev_by_fd(fd);
     struct input_event ev;
-    libevdev_next_event(dev, LIBEVDEV_READ_FLAG_NORMAL, &ev);
-    v8::Local<v8::Array> ret = New<v8::Array>(3);
-    ret->Set(0, New<v8::Number>(ev.type));
-    ret->Set(1, New<v8::Number>(ev.code));
-    ret->Set(2, New<v8::Number>(ev.value));
-    info.GetReturnValue().Set(ret);
+    int rc = libevdev_next_event(dev, LIBEVDEV_READ_FLAG_NORMAL, &ev);
+    std::cout << "rc:" << rc << std::endl;
+    std::cout.flush();
+    if (rc == LIBEVDEV_READ_STATUS_SYNC) {
+        v8::Local<v8::Array> ret = New<v8::Array>(3);
+        ret->Set(0, New<v8::Number>(ev.type));
+        ret->Set(1, New<v8::Number>(ev.code));
+        ret->Set(2, New<v8::Number>(ev.value));
+        info.GetReturnValue().Set(ret);
+    }
 }
 
 NAN_METHOD(has_event_pending) {
